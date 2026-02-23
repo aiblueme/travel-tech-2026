@@ -1,4 +1,5 @@
 images/_raw/
+images/*.jpg
 scraper.py
 __pycache__/
 *.pyc

@@ -4,6 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="2026 Travel Tech Comparison — 19 portable laptops ranked by weight, battery life, and real-world travel value for Southeast Asia carry-on use.">
+  <!-- Open Graph -->
+  <meta property="og:title"       content="2026 Travel Tech · Carry-On Comparison">
+  <meta property="og:description" content="19 laptops ranked for Southeast Asia carry-on travel — weight, battery, MSRP compared.">
+  <meta property="og:type"        content="website">
+  <meta name="twitter:card"       content="summary">
+  <meta name="twitter:title"      content="2026 Travel Tech · Carry-On Comparison">
+  <meta name="twitter:description" content="19 laptops ranked for Southeast Asia carry-on travel — weight, battery, MSRP compared.">
+  <!-- SVG emoji favicon — zero external request -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✈️</text></svg>">
   <title>2026 Travel Tech · Carry-On Comparison</title>
   <style>
     /* ═══════════════════════════════════════
@@ -15,7 +24,7 @@
       --surface-2:   #f0f1f4;
       --border:      #e2e4ea;
       --text:        #1a1d23;
-      --text-muted:  #6b7280;
+      --text-muted:  #5d6475;   /* FIX A-4/A-5: was #6b7280 — now 5.0:1 on surface-2 */
       --accent:      #2563eb;
       --accent-soft: #eff6ff;
       --radius:      12px;
@@ -58,6 +67,28 @@
     a:hover { text-decoration: underline; }
     button { cursor: pointer; font-family: inherit; }
 
+    /* ── Skip link (A-2) ─────────────────── */
+    .skip-link {
+      position: absolute; top: -52px; left: 16px; z-index: 200;
+      background: var(--accent); color: #fff;
+      padding: 8px 16px; border-radius: var(--radius-sm);
+      font-size: .85rem; font-weight: 600;
+      text-decoration: none;
+      transition: top var(--ease);
+    }
+    .skip-link:focus { top: 8px; outline: 3px solid #fff; outline-offset: 2px; }
+
+    /* ═══════════════════════════════════════
+       FOCUS-VISIBLE (A-3)
+    ═══════════════════════════════════════ */
+    .ctrl-btn:focus-visible,
+    .nav-links a:focus-visible,
+    thead th button:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+      border-radius: 3px;
+    }
+
     /* ═══════════════════════════════════════
        NAV
     ═══════════════════════════════════════ */
@@ -82,9 +113,9 @@
       margin-left: auto; flex-wrap: wrap;
     }
     .nav-links a {
+      /* FIX V-2: removed duplicate transition property */
       font-size: .85rem; font-weight: 500;
       color: var(--text-muted);
-      transition: color var(--ease);
       padding-bottom: 2px;
       border-bottom: 2px solid transparent;
       transition: color var(--ease), border-color var(--ease);
@@ -171,17 +202,21 @@
     .ctrl-sep {
       width: 1px; height: 22px; background: var(--border); align-self: center;
     }
+    /* FIX U-6: result count with aria-live */
+    .result-count {
+      font-size: .75rem; color: var(--text-muted);
+      margin-left: auto; align-self: center; white-space: nowrap;
+    }
 
     /* ═══════════════════════════════════════
        CARD GRID
-       — grid-template-columns: auto-fill
-       — each .device-card is a CSS container
-         so @container fires on the CARD width,
-         not the viewport.
+       Each .device-card is a CSS container —
+       @container fires on the CARD's own width,
+       completely independent of the viewport.
     ═══════════════════════════════════════ */
     .card-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
       gap: 18px;
     }
 
@@ -212,22 +247,20 @@
       background: var(--surface-2);
       display: flex; align-items: center; justify-content: center;
     }
-    /* Subtle brand-colour gradient overlay behind image */
     .card-thumb::before {
       content: '';
       position: absolute; inset: 0; z-index: 0;
       background: linear-gradient(135deg, var(--c, #2563eb) 0%, transparent 70%);
       opacity: .12;
     }
-    /* The actual product photo */
     .card-img {
       position: absolute; inset: 0; z-index: 1;
       width: 100%; height: 100%;
-      object-fit: contain;   /* show full device, don't crop */
+      object-fit: contain;
       padding: 10px;
       display: block;
     }
-    /* Emoji fallback — visible only when image errors or is missing */
+    /* FIX I-4: emoji fallback, hidden until image errors */
     .card-emoji {
       position: absolute; inset: 0; z-index: 2;
       display: none;
@@ -248,8 +281,6 @@
       padding: 2px 8px; border-radius: 20px;
       font-size: .62rem; font-weight: 600;
     }
-    .tag-now  { background: #dcfce7; color: #15803d; }
-    .tag-soon { background: #fef3c7; color: #92400e; }
 
     /* ── Card body ──────────────────────── */
     .card-body { padding: 14px 16px 16px; }
@@ -272,7 +303,8 @@
       font-weight: 700; letter-spacing: -.01em;
     }
     .spec-cell .l {
-      font-size: .58rem; color: var(--text-muted);
+      /* FIX A-7: was .58rem (9.3px), now .65rem (10.4px) */
+      font-size: .65rem; color: var(--text-muted);
       text-transform: uppercase; letter-spacing: .05em;
     }
 
@@ -281,7 +313,8 @@
       line-height: 1.55; margin-bottom: 10px;
     }
     .card-sea {
-      font-size: .7rem; color: var(--accent);
+      /* FIX U-4: was .7rem, now .75rem for better mobile legibility */
+      font-size: .75rem; color: var(--accent);
       background: var(--accent-soft);
       border-radius: var(--radius-sm);
       padding: 6px 10px; line-height: 1.45; margin-bottom: 10px;
@@ -306,13 +339,29 @@
       color: var(--accent); min-width: 26px; text-align: right;
     }
 
+    /* FIX F-5: empty state when no cards match filter */
+    .empty-state {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 56px 16px;
+      color: var(--text-muted);
+      font-size: .95rem;
+    }
+
     /* ═══════════════════════════════════════
        CONTAINER QUERY — wide card layout
-       Fires when the CARD's own box ≥ 400px.
-       Unrelated to the viewport width.
+       FIX V-1: threshold was 400px — never fired
+       because auto-fill produces ~282px columns.
+       Changed to 240px so it fires on any card
+       ≥ 300px (the grid's minmax minimum).
+       Demo: at ~480px+ viewport all cards switch
+       from stacked → side-by-side. On a narrow
+       sidebar below 240px, they stay stacked —
+       that's the point: responsive to the
+       container, not the viewport.
     ═══════════════════════════════════════ */
-    @container card (min-width: 400px) {
-      .card-inner { display: grid; grid-template-columns: 160px 1fr; }
+    @container card (min-width: 240px) {
+      .card-inner { display: grid; grid-template-columns: 150px 1fr; }
       .card-thumb { aspect-ratio: auto; min-height: 190px; }
     }
 
@@ -351,14 +400,28 @@
     .td-name { font-weight: 600; font-size: .88rem; }
     .td-brand { font-size: .72rem; color: var(--text-muted); margin-top: 1px; }
 
+    /* ═══════════════════════════════════════
+       BADGES — light mode + dark mode (V-3)
+    ═══════════════════════════════════════ */
     .badge {
       display: inline-block; padding: 2px 8px;
       border-radius: 20px; font-size: .68rem; font-weight: 600;
     }
-    .bg { background: #dcfce7; color: #15803d; }
-    .ba { background: #fef3c7; color: #92400e; }
-    .br { background: #fee2e2; color: #b91c1c; }
-    .bb { background: var(--accent-soft); color: var(--accent); }
+    .bg      { background: #dcfce7; color: #15803d; }
+    .ba      { background: #fef3c7; color: #92400e; }
+    .br      { background: #fee2e2; color: #b91c1c; }
+    .bb      { background: var(--accent-soft); color: var(--accent); }
+    .tag-now  { background: #dcfce7; color: #15803d; }
+    .tag-soon { background: #fef3c7; color: #92400e; }
+
+    /* FIX V-3: dark-mode badge overrides */
+    @media (prefers-color-scheme: dark) {
+      .bg       { background: #14532d; color: #86efac; }
+      .ba       { background: #451a03; color: #fcd34d; }
+      .br       { background: #450a0a; color: #fca5a5; }
+      .tag-now  { background: #14532d; color: #86efac; }
+      .tag-soon { background: #451a03; color: #fcd34d; }
+    }
 
     .rank-pip {
       width: 26px; height: 26px;
@@ -428,7 +491,7 @@
        PRINT STYLESHEET
     ═══════════════════════════════════════ */
     @media print {
-      nav, .controls, .score-track,
+      nav, .controls, .score-track, .skip-link,
       .hero-eyebrow, .section-hd p,
       .explainer-box { display: none !important; }
       * { box-shadow: none !important; border-color: #ccc !important; }
@@ -448,6 +511,9 @@
 </head>
 <body>
 
+<!-- FIX A-2: skip-to-content link (first focusable element) -->
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
 <!-- ════════════════════════════════════════
      NAV
 ════════════════════════════════════════ -->
@@ -460,12 +526,16 @@
   </ul>
 </nav>
 
+<!-- FIX A-1: <main> landmark wraps all primary content -->
+<main id="main-content">
+
 <!-- ════════════════════════════════════════
      HERO
 ════════════════════════════════════════ -->
 <header class="section" role="banner" style="padding-top:clamp(48px,8vw,96px)">
   <div class="hero">
-    <div class="hero-eyebrow">✈️ Southeast Asia · Carry-On Edition · Feb 2026</div>
+    <!-- FIX A-6: decorative emoji wrapped in aria-hidden -->
+    <div class="hero-eyebrow"><span aria-hidden="true">✈️</span> Southeast Asia · Carry-On Edition · Feb 2026</div>
     <h1>Pack <span class="hl">smarter.</span><br>Spec harder.</h1>
     <p>
       19 machines. Three numbers that actually matter on the road: mass, runtime, and
@@ -478,8 +548,9 @@
       <div class="hstat" role="listitem"><strong>$849–$2,499</strong><span>MSRP range</span></div>
       <div class="hstat" role="listitem"><strong>9–22h</strong><span>Battery range</span></div>
     </div>
+    <!-- FIX A-6: decorative emoji aria-hidden -->
     <p class="disclaimer">
-      ⚠️ MSRP is USD and approximate — Thai Baht / Malaysian Ringgit prices vary by
+      <span aria-hidden="true">⚠️</span> MSRP is USD and approximate — Thai Baht / Malaysian Ringgit prices vary by
       retailer and import duties. Surface Pro 11 weight is tablet-only (+0.65 lbs for
       Type Cover). "Soon" devices are confirmed and shipping within 90 days.
     </p>
@@ -495,7 +566,7 @@
     <p>
       Cards use <strong>CSS Container Queries</strong> — each card switches between
       stacked and side-by-side layouts based on <em>its own</em> width, not the
-      viewport. Sort or filter, then resize your browser to see them act independently.
+      viewport. Sort or filter, then resize your browser to watch them respond independently.
     </p>
   </div>
 
@@ -515,6 +586,8 @@
       <button class="ctrl-btn"        data-filter="ultralight" aria-pressed="false">≤ 2.5 lbs</button>
       <button class="ctrl-btn"        data-filter="light"      aria-pressed="false">≤ 3.0 lbs</button>
     </div>
+    <!-- FIX U-6: live result count -->
+    <span id="result-count" role="status" aria-live="polite" class="result-count"></span>
   </div>
 
   <div class="card-grid" id="card-grid" aria-label="Device comparison cards">
@@ -587,13 +660,17 @@
 }
 
 <span class="cm">/* Step 2: query the card's OWN width */</span>
-<span class="kw">@container</span> card (min-width: <span class="vl">400px</span>) {
+<span class="kw">@container</span> card (min-width: <span class="vl">240px</span>) {
   <span class="sel">.card-inner</span> {
     <span class="kw">display</span>: <span class="vl">grid</span>;
-    <span class="kw">grid-template-columns</span>: <span class="vl">160px 1fr</span>;
+    <span class="kw">grid-template-columns</span>: <span class="vl">150px 1fr</span>;
   }
 }</div>
-        <p class="exp-note">Card fires at 400px of <em>its own</em> available space — works in a full-width grid, a sidebar, or a modal without changes.</p>
+        <p class="exp-note">
+          Card fires at 240px of <em>its own</em> available space. Works correctly
+          in a full-width grid, a sidebar, a modal — anywhere. The viewport width
+          is irrelevant to this decision.
+        </p>
       </div>
       <div>
         <p class="exp-sub">Browser support — February 2026</p>
@@ -606,19 +683,24 @@
         </div>
         <p class="exp-sub">What you'll see on this page</p>
         <p class="exp-note">
-          Narrow your browser to around 640px. Cards smaller than 400px switch from
-          side-by-side back to stacked. Cards still wider than 400px stay horizontal.
-          Different cards can be in different states at the same time — that's what
-          media queries cannot give you.
+          The cards on this page use a 240px threshold. Since the grid's minimum
+          column width is 300px, every card is always wider than 240px — so the
+          side-by-side layout fires on all viewports. The value of the container
+          query becomes clear when you imagine placing the same card component
+          in a narrow sidebar: below 240px, it automatically reverts to the
+          stacked layout without any code change.
           <br><br>
           Use <code style="background:var(--surface-2);padding:1px 5px;border-radius:3px;font-family:var(--mono);font-size:.74rem">container-type: inline-size</code>
           on the wrapper element. The container cannot query itself — only its
-          descendants can, using <code style="background:var(--surface-2);padding:1px 5px;border-radius:3px;font-family:var(--mono);font-size:.74rem">@container</code>.
+          descendants query it using
+          <code style="background:var(--surface-2);padding:1px 5px;border-radius:3px;font-family:var(--mono);font-size:.74rem">@container</code>.
         </p>
       </div>
     </div>
   </div>
 </section>
+
+</main><!-- end #main-content -->
 
 <footer role="contentinfo">
   <p>Data snapshot: February 2026. MSRP is USD and approximate — Thai / Malaysian retail prices differ due to import duties and distributor margins. Specs from manufacturer pages.</p>
@@ -627,7 +709,7 @@
 
 <script>
 // ═══════════════════════════════════════════════════
-//  DATA  — slug must match images/{slug}.jpg filename
+//  DATA  — slug matches images/{slug}.webp
 // ═══════════════════════════════════════════════════
 const DEVICES = [
   {
@@ -753,7 +835,8 @@ const DEVICES = [
   },
   {
     id: 16, slug: 'yoga_slim_7i_aura_15',
-    name: 'Yoga Slim 7i Aura 15"', brand: 'Lenovo', chip: 'Core Ultra 7 256V',
+    /* FIX C-6: was 256V — corrected to 258V */
+    name: 'Yoga Slim 7i Aura 15"', brand: 'Lenovo', chip: 'Core Ultra 7 258V',
     weight: 3.20, battery: 12, msrp: 1399, avail: 'Now',
     icon: '🖥️', color: '#e2231a',
     note: 'If you need screen real estate for multi-window work or spreadsheets without an external monitor, the 15.3-inch panel earns its extra weight. The compromise is battery — 12h is honest but not exceptional.',
@@ -808,6 +891,9 @@ let cardFilter = 'all';
 let tblCol     = 'score';
 let tblAsc     = false;
 
+// FIX F-4: column-specific default sort direction
+const TBL_DEFAULT_ASC = { weight: true, battery: false, msrp: true, score: false };
+
 // ═══════════════════════════════════════════════════
 //  HELPERS
 // ═══════════════════════════════════════════════════
@@ -817,7 +903,7 @@ const bBadge = b => b >= 16  ? 'bg' : b >= 12  ? 'ba' : 'br';
 const sBadge = s => s >= 65  ? 'bg' : s >= 40  ? 'ba' : 'br';
 
 // ═══════════════════════════════════════════════════
-//  IMAGE ERROR HANDLER — delegate on the grid
+//  IMAGE ERROR HANDLER — delegated on card grid
 // ═══════════════════════════════════════════════════
 document.getElementById('card-grid').addEventListener('error', e => {
   if (e.target.classList.contains('card-img')) {
@@ -827,7 +913,7 @@ document.getElementById('card-grid').addEventListener('error', e => {
       fallback.style.display = 'flex';
     }
   }
-}, true); // capture phase so it fires before default
+}, true);
 
 // ═══════════════════════════════════════════════════
 //  CARD RENDER
@@ -844,6 +930,22 @@ function renderCards() {
   else if (cardSort === 'price')   data.sort((a, b) => a.msrp    - b.msrp);
   else                             data.sort((a, b) => b.score   - a.score);
 
+  // FIX U-6: update live result count
+  const countEl = document.getElementById('result-count');
+  if (countEl) {
+    countEl.textContent = data.length === DEVICES.length
+      ? `${data.length} devices`
+      : `${data.length} of ${DEVICES.length} devices`;
+  }
+
+  // FIX F-5: empty state when filter returns nothing
+  if (data.length === 0) {
+    document.getElementById('card-grid').innerHTML =
+      '<p class="empty-state">No devices match this filter.</p>';
+    return;
+  }
+
+  // FIX U-2: score bar starts at 0% — animated via rAF after paint
   document.getElementById('card-grid').innerHTML = data.map(d => `
     <article class="device-card fi"
              role="article"
@@ -851,7 +953,7 @@ function renderCards() {
       <div class="card-inner">
         <div class="card-thumb" style="--c:${d.color}">
           <img class="card-img"
-               src="images/${d.slug}.jpg"
+               src="images/${d.slug}.webp"
                alt="${d.brand} ${d.name} laptop"
                loading="lazy"
                decoding="async">
@@ -878,12 +980,12 @@ function renderCards() {
             </div>
           </div>
           <p class="card-note">${d.note}</p>
-          <div class="card-sea" aria-label="Southeast Asia availability">📍 ${d.sea}</div>
+          <div class="card-sea" aria-label="Southeast Asia availability"><span aria-hidden="true">📍</span> ${d.sea}</div>
           <div class="score-row" aria-label="Travel score: ${d.score} out of 100">
             <span class="score-lbl">Travel Score</span>
             <div class="score-track" role="progressbar"
                  aria-valuenow="${d.score}" aria-valuemin="0" aria-valuemax="100">
-              <div class="score-fill" style="width:${d.score}%"></div>
+              <div class="score-fill" style="width:0%" data-score="${d.score}"></div>
             </div>
             <span class="score-num">${d.score}</span>
           </div>
@@ -891,6 +993,15 @@ function renderCards() {
       </div>
     </article>
   `).join('');
+
+  // FIX U-2: double rAF ensures layout is committed before transition starts
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      document.querySelectorAll('.score-fill').forEach(el => {
+        el.style.width = el.dataset.score + '%';
+      });
+    });
+  });
 
   attachFade();
 }
@@ -930,8 +1041,9 @@ function renderTable() {
   }).join('');
 }
 
+// FIX F-4: column-specific default sort direction
 function tblSort(col) {
-  tblAsc = (tblCol === col) ? !tblAsc : false;
+  tblAsc = (tblCol === col) ? !tblAsc : (TBL_DEFAULT_ASC[col] ?? false);
   tblCol = col;
   renderTable();
 }
@@ -963,14 +1075,19 @@ document.querySelectorAll('[data-filter]').forEach(btn => {
 
 // ═══════════════════════════════════════════════════
 //  INTERSECTION OBSERVER — fade-in + nav active
+//  FIX P-6: store observer ref, disconnect before
+//  recreating to prevent accumulation on each render
 // ═══════════════════════════════════════════════════
+let fadeObs = null;
+
 function attachFade() {
-  const obs = new IntersectionObserver(entries => {
+  if (fadeObs) fadeObs.disconnect();
+  fadeObs = new IntersectionObserver(entries => {
     entries.forEach(e => {
-      if (e.isIntersecting) { e.target.classList.add('vis'); obs.unobserve(e.target); }
+      if (e.isIntersecting) { e.target.classList.add('vis'); fadeObs.unobserve(e.target); }
     });
   }, { threshold: 0.08 });
-  document.querySelectorAll('.fi:not(.vis)').forEach(el => obs.observe(el));
+  document.querySelectorAll('.fi:not(.vis)').forEach(el => fadeObs.observe(el));
 }
 
 const navLinks = document.querySelectorAll('.nav-links a');

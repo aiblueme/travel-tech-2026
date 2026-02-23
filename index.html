@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="2026 Travel Tech Comparison — 13 portable laptops ranked by weight, battery life, and real-world travel value for Southeast Asia carry-on use.">
+  <title>2026 Travel Tech · Carry-On Comparison</title>
+  <style>
+    /* ═══════════════════════════════════════
+       DESIGN TOKENS
+    ═══════════════════════════════════════ */
+    :root {
+      --bg:          #f4f5f7;
+      --surface:     #ffffff;
+      --surface-2:   #f0f1f4;
+      --border:      #e2e4ea;
+      --text:        #1a1d23;
+      --text-muted:  #6b7280;
+      --accent:      #2563eb;
+      --accent-soft: #eff6ff;
+      --green:       #16a34a;
+      --amber:       #d97706;
+      --red:         #dc2626;
+      --radius:      12px;
+      --radius-sm:   6px;
+      --shadow:      0 1px 3px rgba(0,0,0,.07), 0 4px 16px rgba(0,0,0,.05);
+      --shadow-up:   0 4px 12px rgba(0,0,0,.10), 0 8px 32px rgba(0,0,0,.07);
+      --font:        -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      --mono:        'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+      --nav-h:       60px;
+      --ease:        220ms cubic-bezier(.4,0,.2,1);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg:          #0f1117;
+        --surface:     #1a1d23;
+        --surface-2:   #22252e;
+        --border:      #2e3240;
+        --text:        #e8eaf0;
+        --text-muted:  #8b93a7;
+        --accent:      #3b82f6;
+        --accent-soft: #1e2a4a;
+        --shadow:      0 1px 3px rgba(0,0,0,.28), 0 4px 16px rgba(0,0,0,.22);
+        --shadow-up:   0 4px 12px rgba(0,0,0,.38), 0 8px 32px rgba(0,0,0,.28);
+      }
+    }
+
+    /* ═══════════════════════════════════════
+       RESET & BASE
+    ═══════════════════════════════════════ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    button { cursor: pointer; font-family: inherit; }
+
+    /* ═══════════════════════════════════════
+       NAV
+    ═══════════════════════════════════════ */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      height: var(--nav-h);
+      background: color-mix(in srgb, var(--surface) 88%, transparent);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center;
+      padding: 0 clamp(16px, 4vw, 48px);
+      gap: 32px;
+    }
+    .nav-brand {
+      font-weight: 800; font-size: .95rem;
+      letter-spacing: -.02em; white-space: nowrap;
+    }
+    .nav-brand span { color: var(--accent); }
+    .nav-links {
+      display: flex; gap: 24px; list-style: none;
+      margin-left: auto; flex-wrap: wrap;
+    }
+    .nav-links a {
+      font-size: .85rem; font-weight: 500;
+      color: var(--text-muted);
+      transition: color var(--ease);
+      padding-bottom: 2px;
+      border-bottom: 2px solid transparent;
+    }
+    .nav-links a.active,
+    .nav-links a:hover {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+    }
+
+    /* ═══════════════════════════════════════
+       HERO
+    ═══════════════════════════════════════ */
+    .hero {
+      padding: clamp(48px, 8vw, 96px) clamp(16px, 4vw, 48px) clamp(32px, 5vw, 64px);
+      max-width: 860px;
+    }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: .72rem; font-weight: 700;
+      letter-spacing: .08em; text-transform: uppercase;
+      color: var(--accent); background: var(--accent-soft);
+      padding: 4px 12px; border-radius: 20px;
+      margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-size: clamp(2.2rem, 5.5vw, 3.8rem);
+      font-weight: 800; line-height: 1.08;
+      letter-spacing: -.03em; margin-bottom: 20px;
+    }
+    .hero h1 .hl { color: var(--accent); }
+    .hero p {
+      font-size: clamp(.95rem, 2vw, 1.15rem);
+      color: var(--text-muted); max-width: 620px;
+      margin-bottom: 32px;
+    }
+    .hero-stats {
+      display: flex; gap: 32px; flex-wrap: wrap;
+    }
+    .hstat strong {
+      display: block; font-size: 1.5rem; font-weight: 700;
+      letter-spacing: -.02em;
+    }
+    .hstat span {
+      font-size: .7rem; color: var(--text-muted);
+      text-transform: uppercase; letter-spacing: .06em;
+    }
+    .disclaimer {
+      margin-top: 16px; padding: 10px 16px;
+      background: var(--surface-2); border-radius: var(--radius-sm);
+      font-size: .75rem; color: var(--text-muted);
+      border-left: 3px solid var(--accent);
+      max-width: 620px;
+    }
+
+    /* ═══════════════════════════════════════
+       SECTION WRAPPER
+    ═══════════════════════════════════════ */
+    .section {
+      padding: clamp(32px, 5vw, 64px) clamp(16px, 4vw, 48px);
+      max-width: 1440px; margin: 0 auto;
+    }
+    .section-hd { margin-bottom: 28px; }
+    .section-hd h2 {
+      font-size: clamp(1.3rem, 3vw, 1.9rem);
+      font-weight: 700; letter-spacing: -.02em; margin-bottom: 6px;
+    }
+    .section-hd p { color: var(--text-muted); max-width: 640px; font-size: .9rem; }
+
+    /* ═══════════════════════════════════════
+       CONTROLS
+    ═══════════════════════════════════════ */
+    .controls {
+      display: flex; flex-wrap: wrap; gap: 10px 14px;
+      align-items: center; margin-bottom: 24px;
+    }
+    .ctrl-label {
+      font-size: .72rem; font-weight: 700; letter-spacing: .06em;
+      text-transform: uppercase; color: var(--text-muted);
+    }
+    .btn-grp { display: flex; gap: 6px; flex-wrap: wrap; }
+    .ctrl-btn {
+      padding: 6px 14px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      background: var(--surface); color: var(--text);
+      font-size: .8rem; font-weight: 500;
+      transition: all var(--ease);
+    }
+    .ctrl-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .ctrl-btn.active {
+      background: var(--accent); border-color: var(--accent); color: #fff;
+    }
+    .ctrl-sep {
+      width: 1px; height: 22px;
+      background: var(--border); align-self: center;
+    }
+
+    /* ═══════════════════════════════════════
+       CARD GRID
+       grid-template-columns uses auto-fill so
+       columns form naturally. Each .device-card
+       is a CSS container — children respond to
+       CARD width, not viewport width.
+    ═══════════════════════════════════════ */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+      gap: 18px;
+    }
+
+    /* ── Container registration ──────────── */
+    .device-card {
+      container-type: inline-size;
+      container-name: card;
+    }
+
+    .card-inner {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden; height: 100%;
+      transition: box-shadow var(--ease), transform var(--ease);
+    }
+    .card-inner:hover {
+      box-shadow: var(--shadow-up);
+      transform: translateY(-2px);
+    }
+
+    .card-thumb {
+      aspect-ratio: 16/9;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 4rem;
+      background: var(--surface-2);
+      position: relative; overflow: hidden;
+    }
+    .card-thumb::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(
+        135deg,
+        var(--c, #2563eb) 0%,
+        transparent 65%
+      );
+      opacity: .15;
+    }
+    .card-brand-tag {
+      position: absolute; top: 10px; left: 10px;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 4px; padding: 2px 8px;
+      font-size: .62rem; font-weight: 700;
+      letter-spacing: .06em; text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .card-avail-tag {
+      position: absolute; top: 10px; right: 10px;
+      padding: 2px 8px; border-radius: 20px;
+      font-size: .62rem; font-weight: 600;
+    }
+    .tag-now  { background: #dcfce7; color: #15803d; }
+    .tag-soon { background: #fef3c7; color: #92400e; }
+
+    .card-body { padding: 14px 16px 16px; }
+
+    .card-name {
+      font-size: .98rem; font-weight: 700;
+      letter-spacing: -.01em; margin-bottom: 2px;
+    }
+    .card-chip {
+      font-size: .72rem; color: var(--text-muted); margin-bottom: 12px;
+    }
+
+    .card-specs {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px; margin-bottom: 12px;
+    }
+    .spec-cell {
+      background: var(--surface-2);
+      border-radius: var(--radius-sm);
+      padding: 7px 6px; text-align: center;
+    }
+    .spec-cell .v {
+      display: block; font-size: .92rem;
+      font-weight: 700; letter-spacing: -.01em;
+    }
+    .spec-cell .l {
+      font-size: .58rem; color: var(--text-muted);
+      text-transform: uppercase; letter-spacing: .05em;
+    }
+
+    .card-note {
+      font-size: .77rem; color: var(--text-muted);
+      line-height: 1.55; margin-bottom: 10px;
+    }
+    .card-sea {
+      font-size: .7rem; color: var(--accent);
+      background: var(--accent-soft);
+      border-radius: var(--radius-sm);
+      padding: 6px 10px; line-height: 1.45;
+      margin-bottom: 10px;
+    }
+
+    .score-row {
+      display: flex; align-items: center; gap: 8px;
+    }
+    .score-lbl {
+      font-size: .65rem; color: var(--text-muted);
+      text-transform: uppercase; letter-spacing: .05em;
+      white-space: nowrap;
+    }
+    .score-track {
+      flex: 1; height: 5px;
+      background: var(--surface-2); border-radius: 3px; overflow: hidden;
+    }
+    .score-fill {
+      height: 100%; border-radius: 3px;
+      background: linear-gradient(90deg, var(--accent), #06b6d4);
+      transition: width .7s cubic-bezier(.4,0,.2,1);
+    }
+    .score-num {
+      font-size: .7rem; font-weight: 700;
+      color: var(--accent); min-width: 26px; text-align: right;
+    }
+
+    /* ── @container: wide card → horizontal layout ── */
+    /* Fires when THIS card's own box is ≥ 400px.
+       Has zero dependency on the viewport — a card
+       in a narrow sidebar stays stacked even on a
+       4K monitor. That's the entire point.          */
+    @container card (min-width: 400px) {
+      .card-inner {
+        display: grid;
+        grid-template-columns: 156px 1fr;
+      }
+      .card-thumb {
+        aspect-ratio: auto;
+        min-height: 180px;
+      }
+    }
+
+    /* ═══════════════════════════════════════
+       COMPARISON TABLE
+    ═══════════════════════════════════════ */
+    .table-scroll {
+      overflow-x: auto;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+    }
+    table {
+      width: 100%; border-collapse: collapse;
+      background: var(--surface); font-size: .85rem;
+    }
+    thead th {
+      background: var(--surface-2);
+      padding: 11px 15px; text-align: left;
+      font-size: .7rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: .06em;
+      color: var(--text-muted); border-bottom: 1px solid var(--border);
+      white-space: nowrap;
+    }
+    thead th button {
+      background: none; border: none; color: inherit;
+      font: inherit; cursor: pointer;
+      display: inline-flex; align-items: center; gap: 3px;
+      padding: 0;
+    }
+    thead th button:hover { color: var(--accent); }
+    thead th.t-active button { color: var(--accent); }
+    tbody tr { border-bottom: 1px solid var(--border); transition: background var(--ease); }
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:hover { background: var(--accent-soft); }
+    tbody td { padding: 11px 15px; }
+    .td-name { font-weight: 600; font-size: .88rem; }
+    .td-brand { font-size: .72rem; color: var(--text-muted); margin-top: 1px; }
+
+    .badge {
+      display: inline-block; padding: 2px 8px;
+      border-radius: 20px; font-size: .68rem; font-weight: 600;
+    }
+    .bg  { background: #dcfce7; color: #15803d; }
+    .ba  { background: #fef3c7; color: #92400e; }
+    .br  { background: #fee2e2; color: #b91c1c; }
+    .bb  { background: var(--accent-soft); color: var(--accent); }
+
+    .rank-pip {
+      width: 26px; height: 26px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 50%; font-size: .75rem; font-weight: 700;
+      background: var(--surface-2); color: var(--text-muted);
+    }
+    tr.r1 .rank-pip { background: #fef9c3; color: #713f12; }
+    tr.r2 .rank-pip { background: #f1f5f9; color: #475569; }
+    tr.r3 .rank-pip { background: #fef3c7; color: #78350f; }
+
+    /* ═══════════════════════════════════════
+       CONTAINER QUERY EXPLAINER
+    ═══════════════════════════════════════ */
+    .explainer-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: clamp(20px, 4vw, 44px);
+      box-shadow: var(--shadow);
+    }
+    .exp-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 36px; margin-top: 24px;
+    }
+    @media (max-width: 680px) { .exp-grid { grid-template-columns: 1fr; } }
+
+    .exp-sub {
+      font-size: .88rem; font-weight: 700;
+      margin-bottom: 10px; letter-spacing: -.01em;
+    }
+    .code-box {
+      background: #0d1117; color: #a5f3fc;
+      border-radius: var(--radius-sm);
+      padding: 14px 16px;
+      font-family: var(--mono); font-size: .76rem;
+      line-height: 1.75; overflow-x: auto;
+      tab-size: 2;
+    }
+    .cm  { color: #6b7280; }
+    .kw  { color: #818cf8; }
+    .sel { color: #f472b6; }
+    .vl  { color: #34d399; }
+    .exp-note {
+      font-size: .78rem; color: var(--text-muted);
+      margin-top: 10px; line-height: 1.6;
+    }
+
+    .support-grid { display: grid; gap: 7px; margin-bottom: 20px; }
+    .sup-row {
+      display: flex; justify-content: space-between; align-items: center;
+      background: var(--surface-2);
+      padding: 8px 12px; border-radius: var(--radius-sm);
+      font-size: .83rem;
+    }
+
+    /* ═══════════════════════════════════════
+       FADE-IN (IntersectionObserver)
+    ═══════════════════════════════════════ */
+    .fi {
+      opacity: 0; transform: translateY(14px);
+      transition: opacity .5s ease, transform .5s ease;
+    }
+    .fi.vis { opacity: 1; transform: translateY(0); }
+
+    /* ═══════════════════════════════════════
+       FOOTER
+    ═══════════════════════════════════════ */
+    footer {
+      text-align: center;
+      padding: 28px clamp(16px, 4vw, 48px);
+      color: var(--text-muted); font-size: .78rem;
+      border-top: 1px solid var(--border);
+    }
+    footer p + p { margin-top: 6px; }
+
+    /* ═══════════════════════════════════════
+       PRINT STYLESHEET
+       Hides nav, controls, score bars.
+       Forces 3-column card grid. Clean type.
+    ═══════════════════════════════════════ */
+    @media print {
+      nav, .controls, .score-track,
+      .hero-eyebrow, .section-hd p,
+      .explainer-box { display: none !important; }
+
+      * { box-shadow: none !important; border-color: #ccc !important; }
+      body { background: #fff; color: #000; font-size: 10pt; }
+
+      .hero { padding: 16pt 0 12pt; }
+      .hero h1 { font-size: 20pt; }
+      .hero p  { color: #444; }
+
+      .card-grid {
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 10px;
+      }
+      .device-card { container-type: normal; }
+      .card-inner  { break-inside: avoid; }
+
+      section, .section { padding: 12pt 0; }
+      h2 { font-size: 14pt; }
+
+      table { font-size: 8pt; }
+      thead th { background: #eee; }
+      tbody tr:hover { background: transparent; }
+      a::after { content: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════
+     NAV
+════════════════════════════════════════ -->
+<nav role="navigation" aria-label="Primary navigation">
+  <div class="nav-brand" aria-label="Site title">Travel<span>Tech</span> 2026</div>
+  <ul class="nav-links" role="list">
+    <li><a href="#cards"  aria-label="Jump to device cards">Cards</a></li>
+    <li><a href="#table"  aria-label="Jump to comparison table">Table</a></li>
+    <li><a href="#learn"  aria-label="Jump to Container Queries explainer">Learn CQ</a></li>
+  </ul>
+</nav>
+
+<!-- ════════════════════════════════════════
+     HERO
+════════════════════════════════════════ -->
+<header class="section" role="banner" style="padding-top: clamp(48px,8vw,96px)">
+  <div class="hero">
+    <div class="hero-eyebrow" aria-label="Category tag">
+      ✈️ Southeast Asia · Carry-On Edition · Feb 2026
+    </div>
+    <h1>Pack <span class="hl">smarter.</span><br>Spec harder.</h1>
+    <p>
+      13 machines. Three numbers that actually matter on the road: mass, runtime, and
+      what it'll cost you at Power Buy in Bangkok or Harvey Norman in KL. All devices
+      are shipping now or confirmed within 90 days of this snapshot.
+    </p>
+    <div class="hero-stats" role="list" aria-label="Summary figures">
+      <div class="hstat" role="listitem">
+        <strong>13</strong><span>Devices</span>
+      </div>
+      <div class="hstat" role="listitem">
+        <strong>1.96–3.89</strong><span>Weight (lbs)</span>
+      </div>
+      <div class="hstat" role="listitem">
+        <strong>$849–$2,499</strong><span>MSRP range</span>
+      </div>
+      <div class="hstat" role="listitem">
+        <strong>9–22h</strong><span>Battery range</span>
+      </div>
+    </div>
+    <p class="disclaimer">
+      ⚠️ MSRP figures are USD. Thai Baht / Malaysian Ringgit prices vary by retailer,
+      import duties, and bundle promotions. Surface Pro 11 weight is tablet-only
+      (add ~0.65 lbs for the Type Cover keyboard).
+    </p>
+  </div>
+</header>
+
+<!-- ════════════════════════════════════════
+     DEVICE CARDS
+════════════════════════════════════════ -->
+<section class="section" id="cards" aria-labelledby="cards-h">
+  <div class="section-hd">
+    <h2 id="cards-h">Device Lineup</h2>
+    <p>
+      Cards use <strong>CSS Container Queries</strong> — each card switches between
+      stacked and side-by-side based on <em>its own</em> width, not the viewport.
+      Sort or filter, then resize your browser to see them respond independently.
+    </p>
+  </div>
+
+  <div class="controls" role="toolbar" aria-label="Sort and filter controls">
+    <span class="ctrl-label" id="sort-label">Sort</span>
+    <div class="btn-grp" role="group" aria-labelledby="sort-label">
+      <button class="ctrl-btn active" data-sort="score"   aria-pressed="true">Travel Score</button>
+      <button class="ctrl-btn"        data-sort="weight"  aria-pressed="false">Weight ↑</button>
+      <button class="ctrl-btn"        data-sort="battery" aria-pressed="false">Battery ↓</button>
+      <button class="ctrl-btn"        data-sort="price"   aria-pressed="false">Price ↑</button>
+    </div>
+    <div class="ctrl-sep" role="separator" aria-hidden="true"></div>
+    <span class="ctrl-label" id="filter-label">Filter</span>
+    <div class="btn-grp" role="group" aria-labelledby="filter-label">
+      <button class="ctrl-btn active" data-filter="all"        aria-pressed="true">All</button>
+      <button class="ctrl-btn"        data-filter="ultralight" aria-pressed="false">≤ 2.5 lbs</button>
+      <button class="ctrl-btn"        data-filter="light"      aria-pressed="false">≤ 3.0 lbs</button>
+    </div>
+  </div>
+
+  <div class="card-grid" id="card-grid" aria-label="Device comparison cards">
+    <!-- Populated by JS -->
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     COMPARISON TABLE
+════════════════════════════════════════ -->
+<section class="section" id="table" aria-labelledby="table-h">
+  <div class="section-hd">
+    <h2 id="table-h">Full Spec Sheet</h2>
+    <p>Click any column header to sort. Travel Score: 50% lightest weight + 50% longest battery, normalised 0–100.</p>
+  </div>
+  <div class="table-scroll" role="region" aria-label="Device specification table" tabindex="0">
+    <table aria-label="2026 Travel Tech full comparison">
+      <thead>
+        <tr>
+          <th scope="col" style="width:38px">#</th>
+          <th scope="col">Device</th>
+          <th scope="col">Chip</th>
+          <th scope="col" id="th-weight">
+            <button onclick="tblSort('weight')" aria-label="Sort by weight">
+              Weight <span aria-hidden="true">⇅</span>
+            </button>
+          </th>
+          <th scope="col" id="th-battery">
+            <button onclick="tblSort('battery')" aria-label="Sort by battery life">
+              Battery <span aria-hidden="true">⇅</span>
+            </button>
+          </th>
+          <th scope="col" id="th-msrp">
+            <button onclick="tblSort('msrp')" aria-label="Sort by price">
+              MSRP <span aria-hidden="true">⇅</span>
+            </button>
+          </th>
+          <th scope="col" id="th-score">
+            <button onclick="tblSort('score')" aria-label="Sort by travel score">
+              Score <span aria-hidden="true">⇅</span>
+            </button>
+          </th>
+          <th scope="col">Avail.</th>
+        </tr>
+      </thead>
+      <tbody id="tbl-body">
+        <!-- Populated by JS -->
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     CONTAINER QUERIES EXPLAINER
+════════════════════════════════════════ -->
+<section class="section" id="learn" aria-labelledby="learn-h">
+  <div class="explainer-box fi">
+    <div class="section-hd" style="margin-bottom:0">
+      <h2 id="learn-h">Why Container Queries?</h2>
+      <p>
+        The pattern used to build this page — and the right tool for any component
+        that needs to respond to where it's placed, not how wide the screen is.
+      </p>
+    </div>
+
+    <div class="exp-grid">
+      <!-- LEFT: Code comparison -->
+      <div>
+        <p class="exp-sub">The old approach — viewport-dependent</p>
+        <div class="code-box" role="region" aria-label="Old CSS: viewport media query">
+<span class="cm">/* Fires when the *screen* is narrow.
+   Breaks if the card sits in a sidebar
+   on a wide monitor — query never fires. */</span>
+<span class="kw">@media</span> (max-width: <span class="vl">600px</span>) {
+  <span class="sel">.card-inner</span> {
+    <span class="kw">display</span>: <span class="vl">block</span>;
+  }
+}</div>
+
+        <p class="exp-sub" style="margin-top:20px">The container query approach</p>
+        <div class="code-box" role="region" aria-label="New CSS: container query">
+<span class="cm">/* Step 1: register the card as a container */</span>
+<span class="sel">.device-card</span> {
+  <span class="kw">container-type</span>: <span class="vl">inline-size</span>;
+  <span class="kw">container-name</span>: <span class="vl">card</span>;
+}
+
+<span class="cm">/* Step 2: query the card's OWN width */</span>
+<span class="kw">@container</span> card (min-width: <span class="vl">400px</span>) {
+  <span class="sel">.card-inner</span> {
+    <span class="kw">display</span>: <span class="vl">grid</span>;
+    <span class="kw">grid-template-columns</span>: <span class="vl">156px 1fr</span>;
+  }
+}</div>
+        <p class="exp-note">
+          Card fires at 400px of <em>its own</em> available space.
+          Whether it's in a full-width grid, a two-column layout, or a
+          modal — the query works correctly because it measures the
+          card's box, not the viewport.
+        </p>
+      </div>
+
+      <!-- RIGHT: Browser support + live note -->
+      <div>
+        <p class="exp-sub">Browser support — February 2026</p>
+        <div class="support-grid">
+          <div class="sup-row"><span>Chrome / Edge 105+</span>  <span class="badge bg">Full ✓</span></div>
+          <div class="sup-row"><span>Firefox 110+</span>        <span class="badge bg">Full ✓</span></div>
+          <div class="sup-row"><span>Safari 16+</span>          <span class="badge bg">Full ✓</span></div>
+          <div class="sup-row"><span>iOS Safari / Chrome</span> <span class="badge bg">Full ✓</span></div>
+          <div class="sup-row"><span>Baseline status</span>     <span class="badge bb">Widely available</span></div>
+        </div>
+
+        <p class="exp-sub">What you'll see on this page</p>
+        <p class="exp-note">
+          Narrow your browser window to around <strong>640px</strong>.
+          Cards that are smaller than 400px switch from the side-by-side
+          (image left, text right) layout back to a stacked layout.
+          Cards that are still wider than 400px — for example if you're
+          in a three-column grid — stay horizontal.
+          <br><br>
+          That independence between cards is what media queries cannot
+          give you. It's also why the spec was prioritised as a
+          <strong>CSS Baseline</strong> feature: every major browser
+          ships it, and it's safe to use without fallbacks today.
+        </p>
+
+        <p class="exp-sub" style="margin-top:20px">Key rule for dense data UIs</p>
+        <p class="exp-note">
+          Use <code style="background:var(--surface-2);padding:1px 5px;border-radius:3px;font-family:var(--mono);font-size:.75rem">container-type: inline-size</code>
+          on the wrapper, not on the card itself — the container cannot
+          query its own size, only its children can. The wrapper becomes
+          the measuring box; children query it with <code style="background:var(--surface-2);padding:1px 5px;border-radius:3px;font-family:var(--mono);font-size:.75rem">@container</code>.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer role="contentinfo">
+  <p>
+    Data snapshot: February 2026. MSRP is USD and approximate —
+    Thai / Malaysian retail prices differ due to import duties and
+    distributor margins. Specs sourced from manufacturer spec sheets
+    and product pages.
+  </p>
+  <p>Built with vanilla HTML · CSS Grid · Container Queries · Zero frameworks · Zero dependencies.</p>
+</footer>
+
+<script>
+// ═══════════════════════════════════════════════════
+//  DATA
+// ═══════════════════════════════════════════════════
+const DEVICES = [
+  {
+    id: 1, name: 'MacBook Air 13"', brand: 'Apple',
+    chip: 'Apple M4',
+    weight: 2.70, battery: 18, msrp: 1099, avail: 'Now',
+    icon: '🍎', color: '#1d1d1f',
+    note: 'M4 efficiency means the 18-hour spec holds up in real use — not just a screen-off idle figure. macOS Sequoia adds local AI features that run without phoning home, useful when you\'re on a slow hostel connection.',
+    sea: 'Apple Stores: Central World (BKK) & Suria KLCC (KL). AppleCare+ claimable at both. Authorized resellers in every major mall across both countries.'
+  },
+  {
+    id: 2, name: 'ZenBook S 14 OLED', brand: 'ASUS',
+    chip: 'Intel Core Ultra 7 258V',
+    weight: 2.65, battery: 15, msrp: 1299, avail: 'Now',
+    icon: '💎', color: '#00a0e9',
+    note: 'The OLED panel covers 100% DCI-P3 at 120Hz — a meaningful spec if you color-grade road footage. ASUS service centers appear in almost every Thai and Malaysian city; walking-in for a repair is actually feasible.',
+    sea: 'ASUS Power Mall (Thailand) and Harvey Norman (Malaysia) stock the full SKU range. Service centers listed at asus.com/th and asus.com/my.'
+  },
+  {
+    id: 3, name: 'LG Gram 14 (2026)', brand: 'LG',
+    chip: 'Intel Core Ultra 7 265H',
+    weight: 2.18, battery: 22, msrp: 1299, avail: 'Now',
+    icon: '🪶', color: '#a50034',
+    note: 'At 2.18 lbs it\'s lighter than many 13-inch ultrabooks while shipping a 14-inch screen. The 22-hour figure is still conservative — LG\'s claimed 25 hours isn\'t far off under mixed use. The obvious carry-on pick when bag weight is the constraint.',
+    sea: 'Authorized resellers in MBK (BKK) and Low Yat Plaza (KL). Limited official LG service centers — check warranty terms before purchasing away from home.'
+  },
+  {
+    id: 4, name: 'ThinkPad X1 Carbon 13', brand: 'Lenovo',
+    chip: 'Intel Core Ultra 7 258V / Snapdragon X Elite',
+    weight: 2.48, battery: 15, msrp: 1749, avail: 'Now',
+    icon: '🖤', color: '#e2231a',
+    note: 'If you type for 6 hours on transit days, the keyboard here justifies the price premium by itself. The Snapdragon X Elite SKU gets noticeably more battery-per-watt — worth specifying over the Intel model if you can find it.',
+    sea: 'Lenovo flagship stores in Siam Paragon (BKK) and Mid Valley Megamall (KL). Enterprise-grade parts stocking; B2B warranty is more comprehensive than consumer.'
+  },
+  {
+    id: 5, name: 'Dell XPS 13 (2025)', brand: 'Dell',
+    chip: 'Intel Core Ultra 7 256V',
+    weight: 2.73, battery: 12, msrp: 1299, avail: 'Now',
+    icon: '🔷', color: '#007db8',
+    note: 'Dell shrank it again. The result is pocketable in a way no 13-inch should be, but port selection is two USB-C and nothing else — budget for a hub if you present at conferences or connect to hotel TVs.',
+    sea: 'Dell.com ships to Thailand and Malaysia with local warranty. Lazada and Shopee carry official Dell seller listings. Fewer physical service points than ASUS or Lenovo.'
+  },
+  {
+    id: 6, name: 'Galaxy Book5 Pro 14', brand: 'Samsung',
+    chip: 'Intel Core Ultra 7 258V',
+    weight: 2.69, battery: 16, msrp: 1299, avail: 'Now',
+    icon: '💫', color: '#1428a0',
+    note: 'Galaxy ecosystem integration — cross-device clipboard, DeX mode, instant hotspot from a Galaxy S25 — is genuinely useful if your phone is already Samsung. Dynamic AMOLED 2X is the sharpest panel at this price band.',
+    sea: 'Samsung Experience Stores across Thailand and Malaysia. Arguably the smoothest warranty claim process in SEA; walk-in same-day swaps are common for display issues.'
+  },
+  {
+    id: 7, name: 'HP OmniBook Ultra 14', brand: 'HP',
+    chip: 'AMD Ryzen AI 9 HX 375',
+    weight: 3.09, battery: 17, msrp: 1299, avail: 'Now',
+    icon: '🔵', color: '#0096d6',
+    note: 'The Ryzen AI 9 gives the most headroom for local inference workloads at this price — relevant when you\'re offline. Heavier than competition but 17 hours compensates on long-haul legs. The trade-off is explicit.',
+    sea: 'HP flagship stores in IT City malls and Machines Malaysia. Wide authorized service network extends to secondary cities — an advantage if you\'re outside Bangkok or KL.'
+  },
+  {
+    id: 8, name: 'Surface Pro 11', brand: 'Microsoft',
+    chip: 'Snapdragon X Plus',
+    weight: 1.96, battery: 14, msrp: 999, avail: 'Now',
+    icon: '🪟', color: '#737373',
+    note: 'Listed weight is tablet-only; Type Cover adds ~0.65 lbs. The Snapdragon ARM build runs fanless — genuinely silent, no spinning up at airport security. Detachable form factor means airport screening is faster too.',
+    sea: 'Available at Power Buy (Thailand) and Machines stores (Malaysia). Type Cover sold separately and stock availability varies. Check for ARM app compatibility with your specific software before committing.'
+  },
+  {
+    id: 9, name: 'Framework 13 AMD', brand: 'Framework',
+    chip: 'AMD Ryzen AI 7 360',
+    weight: 2.87, battery: 12, msrp: 849, avail: 'Now',
+    icon: '🔧', color: '#e84c0e',
+    note: 'The repairable laptop. If a port snaps off in Chiang Mai, you order a $9 expansion card with a hotel address. Lowest entry price of the 13 machines here still buys a competitive Ryzen AI chip — the value math is real.',
+    sea: 'No physical retail in Thailand or Malaysia. Order via framework.computer with international shipping. Self-repair is the warranty model — have a basic toolkit. Not ideal if you need next-day walk-in support.'
+  },
+  {
+    id: 10, name: 'Acer Swift 14 AI', brand: 'Acer',
+    chip: 'Intel Core Ultra 7 258V',
+    weight: 3.09, battery: 13, msrp: 999, avail: 'Now',
+    icon: '🌀', color: '#83b81a',
+    note: 'Nothing flashy, nothing missing. At $999 it undercuts heavier rivals while keeping the Intel NPU for local AI tasks. The most honest value proposition at this weight class — a workhorse that won\'t complain.',
+    sea: 'Acer has one of the densest authorized service networks in both Thailand and Malaysia. Easy to find parts and service outside the capital cities — a genuine advantage for long trips.'
+  },
+  {
+    id: 11, name: 'Yoga Slim 7x (2025)', brand: 'Lenovo',
+    chip: 'Snapdragon X Elite X1E-78-100',
+    weight: 2.82, battery: 15, msrp: 1199, avail: 'Now',
+    icon: '🧘', color: '#e2231a',
+    note: 'Snapdragon X Elite handles 4K timeline exports well enough to replace a desktop for short-form creators. The 2.8K OLED display makes Lightroom editing viable without a monitor. ARM app compatibility improved significantly across 2025.',
+    sea: 'Lenovo flagship stores in Siam Paragon and Mid Valley Megamall. Snapdragon builds have matured — most creative pro apps run natively as of late 2025.'
+  },
+  {
+    id: 12, name: 'MateBook X Pro (2025)', brand: 'Huawei',
+    chip: 'Intel Core Ultra 9 185H',
+    weight: 2.71, battery: 15, msrp: 1499, avail: 'Now',
+    icon: '🌸', color: '#cf0a2c',
+    note: 'Premium all-aluminum build, 3.1K OLED, and strong thermals in 2.71 lbs. Best spec-per-gram ratio of the premium tier. The value calculation changes depending on where in SEA you buy it — KL pricing is more competitive than Bangkok.',
+    sea: 'Huawei Experience Stores are prominent in Malaysia (Pavilion KL, Sunway Pyramid). Thai availability is patchier — buy in KL if possible. Note: no Google Play on HarmonyOS; check app requirements first.'
+  },
+  {
+    id: 13, name: 'Razer Blade 14 (2025)', brand: 'Razer',
+    chip: 'Ryzen AI 9 365 + RTX 4070',
+    weight: 3.89, battery: 9, msrp: 2499, avail: 'Now',
+    icon: '🐍', color: '#00d15f',
+    note: 'The only GPU-class machine on the list that doesn\'t look like one. 9 hours holds under light load; push the RTX 4070 and you\'re at 2.5. Bring this when your work needs GPU compute — not just a browser.',
+    sea: 'Available at JIB Computer (Thailand) and Razer authorized stores in KL. Typically priced above US MSRP due to import. Factor in 10–15% premium over the figures listed here.'
+  }
+];
+
+// ═══════════════════════════════════════════════════
+//  TRAVEL SCORE (0–100)
+//  50 pts from lightest weight, 50 pts from longest battery
+// ═══════════════════════════════════════════════════
+(function computeScores() {
+  const ws = DEVICES.map(d => d.weight);
+  const bs = DEVICES.map(d => d.battery);
+  const minW = Math.min(...ws), maxW = Math.max(...ws);
+  const minB = Math.min(...bs), maxB = Math.max(...bs);
+  DEVICES.forEach(d => {
+    const wPct = 1 - (d.weight - minW) / (maxW - minW);
+    const bPct =     (d.battery - minB) / (maxB - minB);
+    d.score = Math.round(wPct * 50 + bPct * 50);
+  });
+})();
+
+// ═══════════════════════════════════════════════════
+//  STATE
+// ═══════════════════════════════════════════════════
+let cardSort   = 'score';
+let cardFilter = 'all';
+let tblCol     = 'score';
+let tblAsc     = false;
+
+// ═══════════════════════════════════════════════════
+//  HELPERS
+// ═══════════════════════════════════════════════════
+function availClass(a) { return a === 'Now' ? 'tag-now' : 'tag-soon'; }
+
+function wBadge(w)  { return w <= 2.5 ? 'bg' : w <= 3.0 ? 'ba' : 'br'; }
+function bBadge(b)  { return b >= 16  ? 'bg' : b >= 12  ? 'ba' : 'br'; }
+function sBadge(s)  { return s >= 65  ? 'bg' : s >= 40  ? 'ba' : 'br'; }
+
+// ═══════════════════════════════════════════════════
+//  CARD RENDER
+// ═══════════════════════════════════════════════════
+function renderCards() {
+  let data = [...DEVICES];
+
+  if (cardFilter === 'ultralight') data = data.filter(d => d.weight <= 2.5);
+  if (cardFilter === 'light')      data = data.filter(d => d.weight <= 3.0);
+
+  if      (cardSort === 'weight')  data.sort((a, b) => a.weight  - b.weight);
+  else if (cardSort === 'battery') data.sort((a, b) => b.battery - a.battery);
+  else if (cardSort === 'price')   data.sort((a, b) => a.msrp    - b.msrp);
+  else                             data.sort((a, b) => b.score   - a.score);
+
+  document.getElementById('card-grid').innerHTML = data.map(d => `
+    <article class="device-card fi"
+             role="article"
+             aria-label="${d.brand} ${d.name} — ${d.weight} lbs, ${d.battery}h battery, $${d.msrp} MSRP">
+      <div class="card-inner">
+        <div class="card-thumb" style="--c:${d.color}" aria-hidden="true">
+          ${d.icon}
+          <span class="card-brand-tag">${d.brand}</span>
+          <span class="card-avail-tag ${availClass(d.avail)}"
+                aria-label="Availability: ${d.avail}">${d.avail}</span>
+        </div>
+        <div class="card-body">
+          <div class="card-name">${d.name}</div>
+          <div class="card-chip">${d.chip}</div>
+          <div class="card-specs" role="list" aria-label="Key specs">
+            <div class="spec-cell" role="listitem">
+              <span class="v" aria-label="${d.weight} pounds">${d.weight}</span>
+              <span class="l">lbs</span>
+            </div>
+            <div class="spec-cell" role="listitem">
+              <span class="v" aria-label="${d.battery} hours">${d.battery}h</span>
+              <span class="l">battery</span>
+            </div>
+            <div class="spec-cell" role="listitem">
+              <span class="v" aria-label="$${d.msrp}">$${d.msrp.toLocaleString()}</span>
+              <span class="l">MSRP</span>
+            </div>
+          </div>
+          <p class="card-note">${d.note}</p>
+          <div class="card-sea" aria-label="Southeast Asia availability">📍 ${d.sea}</div>
+          <div class="score-row" aria-label="Travel score: ${d.score} out of 100">
+            <span class="score-lbl">Travel Score</span>
+            <div class="score-track"
+                 role="progressbar"
+                 aria-valuenow="${d.score}"
+                 aria-valuemin="0"
+                 aria-valuemax="100">
+              <div class="score-fill" style="width:${d.score}%"></div>
+            </div>
+            <span class="score-num">${d.score}</span>
+          </div>
+        </div>
+      </div>
+    </article>
+  `).join('');
+
+  // Re-attach intersection observers to newly created elements
+  attachFade();
+}
+
+// ═══════════════════════════════════════════════════
+//  TABLE RENDER
+// ═══════════════════════════════════════════════════
+function renderTable() {
+  let data = [...DEVICES];
+
+  data.sort((a, b) => tblAsc
+    ? a[tblCol] - b[tblCol]
+    : b[tblCol] - a[tblCol]
+  );
+
+  // Rank is always by travel score
+  const byScore = [...DEVICES].sort((a, b) => b.score - a.score);
+  const rankOf  = {};
+  byScore.forEach((d, i) => { rankOf[d.id] = i + 1; });
+
+  // Mark active header
+  ['weight','battery','msrp','score'].forEach(c => {
+    const el = document.getElementById('th-' + c);
+    if (el) el.classList.toggle('t-active', c === tblCol);
+  });
+
+  document.getElementById('tbl-body').innerHTML = data.map(d => {
+    const r = rankOf[d.id];
+    return `
+      <tr class="${r <= 3 ? 'r'+r : ''}">
+        <td><div class="rank-pip" aria-label="Rank ${r} by travel score">${r}</div></td>
+        <td>
+          <div class="td-name">${d.name}</div>
+          <div class="td-brand">${d.brand}</div>
+        </td>
+        <td style="font-size:.78rem;color:var(--text-muted)">${d.chip}</td>
+        <td><span class="badge ${wBadge(d.weight)}" aria-label="${d.weight} lbs">${d.weight} lbs</span></td>
+        <td><span class="badge ${bBadge(d.battery)}" aria-label="${d.battery} hours">${d.battery}h</span></td>
+        <td>$${d.msrp.toLocaleString()}</td>
+        <td><span class="badge ${sBadge(d.score)}" aria-label="Score ${d.score}">${d.score}</span></td>
+        <td><span class="badge ${availClass(d.avail)}">${d.avail}</span></td>
+      </tr>
+    `;
+  }).join('');
+}
+
+// ═══════════════════════════════════════════════════
+//  TABLE SORT (called from inline onclick)
+// ═══════════════════════════════════════════════════
+function tblSort(col) {
+  tblAsc = (tblCol === col) ? !tblAsc : false;
+  tblCol = col;
+  renderTable();
+}
+
+// ═══════════════════════════════════════════════════
+//  CONTROLS
+// ═══════════════════════════════════════════════════
+document.querySelectorAll('[data-sort]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('[data-sort]').forEach(b => {
+      b.classList.remove('active');
+      b.setAttribute('aria-pressed', 'false');
+    });
+    btn.classList.add('active');
+    btn.setAttribute('aria-pressed', 'true');
+    cardSort = btn.dataset.sort;
+    renderCards();
+  });
+});
+
+document.querySelectorAll('[data-filter]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('[data-filter]').forEach(b => {
+      b.classList.remove('active');
+      b.setAttribute('aria-pressed', 'false');
+    });
+    btn.classList.add('active');
+    btn.setAttribute('aria-pressed', 'true');
+    cardFilter = btn.dataset.filter;
+    renderCards();
+  });
+});
+
+// ═══════════════════════════════════════════════════
+//  INTERSECTION OBSERVER — fade-in + nav active
+// ═══════════════════════════════════════════════════
+function attachFade() {
+  const fadeObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('vis');
+        fadeObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08 });
+
+  document.querySelectorAll('.fi:not(.vis)').forEach(el => fadeObs.observe(el));
+}
+
+// Nav active state via scroll position
+const navLinks = document.querySelectorAll('.nav-links a');
+const sections = document.querySelectorAll('section[id]');
+
+const navObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      navLinks.forEach(a => {
+        a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id);
+      });
+    }
+  });
+}, { rootMargin: '-45% 0px -50% 0px' });
+
+sections.forEach(s => navObs.observe(s));
+
+// ═══════════════════════════════════════════════════
+//  INIT
+// ═══════════════════════════════════════════════════
+renderCards();
+renderTable();
+attachFade();
+</script>
+</body>
+</html>

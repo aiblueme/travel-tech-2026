@@ -1,0 +1,8 @@
+images/_raw/
+scraper.py
+__pycache__/
+*.pyc
+.git
+.gitignore
+.dockerignore
+*.md

@@ -12,8 +12,10 @@ RUN rm -rf /usr/share/nginx/html/*
 # Copy the single-file app
 COPY index.html /usr/share/nginx/html/index.html
 
-# Optional: copy scraped images if the directory exists
-# COPY images/ /usr/share/nginx/html/images/
+# Copy product images (scraped by scraper.py, _raw/ excluded via .dockerignore)
+# If the images/ directory doesn't exist yet the build will still succeed —
+# cards fall back to emoji placeholders via the onerror handler in the HTML.
+COPY images/ /usr/share/nginx/html/images/
 
 # Replace default nginx config with a minimal, hardened version:
 #   - gzip on for HTML/CSS/JS

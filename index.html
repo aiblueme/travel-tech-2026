@@ -1017,9 +1017,14 @@ function renderTable() {
   const rankOf  = {};
   byScore.forEach((d, i) => { rankOf[d.id] = i + 1; });
 
+  // FIX U-7: update sort direction arrow (↑/↓) on active column
   ['weight','battery','msrp','score'].forEach(c => {
     const el = document.getElementById('th-' + c);
-    if (el) el.classList.toggle('t-active', c === tblCol);
+    if (el) {
+      el.classList.toggle('t-active', c === tblCol);
+      const arrow = el.querySelector('span[aria-hidden]');
+      if (arrow) arrow.textContent = c === tblCol ? (tblAsc ? '↑' : '↓') : '⇅';
+    }
   });
 
   document.getElementById('tbl-body').innerHTML = data.map(d => {

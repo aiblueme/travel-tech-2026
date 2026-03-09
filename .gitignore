@@ -2,3 +2,8 @@ images/_raw/
 __pycache__/
 *.pyc
 .DS_Store
+.env
+.env.*
+node_modules/
+.vscode/
+*.log

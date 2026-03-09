@@ -4,6 +4,8 @@ scraper.py
 __pycache__/
 *.pyc
 .git
+.github
+.claude
 .gitignore
 .dockerignore
 *.md

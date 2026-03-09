@@ -38,11 +38,18 @@ RUN printf 'server {\n\
 \n\
     # Gzip compression\n\
     gzip            on;\n\
+    gzip_vary       on;\n\
     gzip_types      text/html text/css application/javascript image/svg+xml;\n\
     gzip_min_length 256;\n\
 \n\
     location / {\n\
         try_files $uri $uri/ =404;\n\
+    }\n\
+\n\
+    # Block dotfile access\n\
+    location ~ /\\. {\n\
+        deny all;\n\
+        return 404;\n\
     }\n\
 \n\
     # Static asset caching — 1 year immutable for versioned WebP images\n\

@@ -28,6 +28,7 @@ RUN printf 'server {\n\
     root         /usr/share/nginx/html;\n\
     index        index.html;\n\
     charset      utf-8;\n\
+    server_tokens off;\n\
 \n\
     # Security headers\n\
     add_header X-Frame-Options        "SAMEORIGIN"   always;\n\
